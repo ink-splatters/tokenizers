@@ -19,6 +19,7 @@ requirements:
 
   run:
     - python x.x
+    - huggingface_hub <1.0
 
 test:
   imports:

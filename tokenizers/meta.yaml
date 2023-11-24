@@ -1,0 +1,41 @@
+{% set name = "tokenizers" %}
+{% set version = "0.14.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/tokenizers-{{ version }}.tar.gz
+  sha256: ea3b3f8908a9a5b9d6fc632b5f012ece7240031c44c6d4764809f33736534166
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python >=3.7
+    - maturin >=1.0,<2.0
+    - pip
+  run:
+    - python >=3.7
+    - huggingface_hub >=0.16.4,<0.18
+
+test:
+  imports:
+    - tokenizers
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  dev_url: https://github.com/huggingface/tokenizers
+  license: Apache-2.0
+  license_file: tokenizers/LICENSE
+
+extra:
+  recipe-maintainers:
+    - AddYourGitHubIdHere
